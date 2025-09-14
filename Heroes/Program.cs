@@ -26,6 +26,7 @@ builder.Services.AddScoped<ICreateHeroeService, CreateHeroeService>();
 builder.Services.AddScoped<IGetHeroeService, GetHeroesService>();
 builder.Services.AddScoped<IDeleteHeroeService, DeleteHeroeService>();
 builder.Services.AddScoped<IGetHeroeByIdService, GetHeroeByIdService>();
+builder.Services.AddScoped<IUpdateHeroeService, UpdateHeroeService>();
 builder.Services.AddScoped<IHeroPowerRepository, HeroPowerRepository>();
 builder.Services.AddScoped<IHeroPowerService, HeroPowerService>();
 builder.Services.AddScoped<IHeroesRepository, HeroesRepository>();

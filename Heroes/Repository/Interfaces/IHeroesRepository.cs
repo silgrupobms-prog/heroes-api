@@ -7,6 +7,7 @@ namespace Heroes.Repository.Interfaces
         Task<List<HeroeDomain>> GetAllAsync();
         Task<HeroeDomain> GetByIdAsync(int id);
         Task Create(HeroeDomain entity);
+        Task UpdateAsync(HeroeDomain entity);
         Task DeleteAsync(int id);
     }
 }

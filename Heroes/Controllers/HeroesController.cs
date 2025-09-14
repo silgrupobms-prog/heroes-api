@@ -14,14 +14,17 @@ namespace Heroes.Controllers
         private readonly IGetHeroeService _getHeroesService;
         private readonly IDeleteHeroeService _deleteHeroeService;
         private readonly IGetHeroeByIdService _getHeroeByIdService;
+        private readonly IUpdateHeroeService _updateHeroeService;
 
         public HeroesController(ICreateHeroeService createHeroesService, IGetHeroeService getHeroeService,
-            IDeleteHeroeService deleteHeroeService, IGetHeroeByIdService getHeroeByIdService)
+            IDeleteHeroeService deleteHeroeService, IGetHeroeByIdService getHeroeByIdService,
+            IUpdateHeroeService updateHeroeService)
         {
             _createHeroesService = createHeroesService;
             _getHeroesService = getHeroeService;
             _deleteHeroeService = deleteHeroeService;
             _getHeroeByIdService = getHeroeByIdService;
+            _updateHeroeService = updateHeroeService;
         }
 
         [HttpPost]
@@ -35,7 +38,6 @@ namespace Heroes.Controllers
         {
             return await _getHeroesService.Perform();
         }
-
 
         [HttpDelete]
         public async Task Delete(int id)
@@ -56,5 +58,18 @@ namespace Heroes.Controllers
             return Ok(heroe);
         }
 
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateHeroe(int id, UpdateHeroDto heroe)
+        {
+            try
+            {
+                await _updateHeroeService.Perform(id, heroe);
+                return NoContent();
+            }
+            catch (ArgumentException ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
     }
 }

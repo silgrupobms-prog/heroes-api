@@ -30,6 +30,12 @@ namespace Repositories
             await _context.SaveChangesAsync();
         }
 
+        public async Task UpdateAsync(HeroeDomain entity)
+        {
+            _context.Set<HeroeDomain>().Update(entity);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task DeleteAsync(int id)
         {
             var entity = await _context.Set<HeroeDomain>().FindAsync(id);
